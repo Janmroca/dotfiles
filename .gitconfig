@@ -1,14 +1,1 @@
-[alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lb = log --first-parent --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	co = checkout
-	st = status
-	ds = diff --staged
-	unstage = reset HEAD --
-[user]
-	email = jan.manrique@est.fib.upc.edu
-	name = Jan Manrique
-[push]
-	default = simple
-[core]
-	askpass = git-gui--askpass
+.configs/.gitconfig

@@ -22,9 +22,14 @@ SAVEHIST=3000
 
 # End of lines added by compinstall
 
-
-# System info script
-#neofetch
+# vpn
+alias vpn='/opt/cisco/anyconnect/bin/vpn'
+alias vpnui='/opt/cisco/anyconnect/bin/vpnui'
 
 # Dotfiles git configuration
-alias config='/usr/bin/git --git-dir=/home/i3wm/.cfg/ --work-tree=/home/i3wm'
+alias config='/usr/bin/git --git-dir=/home/$USER/.cfg/ --work-tree=/home/$USER'
+
+
+# Quercus bins
+PATH="/Quercus/bin:$PATH"
+
