@@ -22,13 +22,11 @@ SAVEHIST=3000
 
 # End of lines added by compinstall
 
-# vpn
-alias vpn='/opt/cisco/anyconnect/bin/vpn'
-alias vpnui='/opt/cisco/anyconnect/bin/vpnui'
+# Load custom functions
+source .zshfuncs
 
-# Dotfiles git configuration
-alias config='/usr/bin/git --git-dir=/home/$USER/.cfg/ --work-tree=/home/$USER'
-
+# Load custom alias
+source .zshalias
 
 # Quercus bins
 PATH="/Quercus/bin:$PATH"
