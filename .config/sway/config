@@ -108,7 +108,7 @@ gaps outer 10
     assign [class="Code"] $workspace3
 
     #Autolaunch
-    exec --no-startup-id swaymsg 'workspace $workspace1; exec $(which firefox-developer)'
+    exec --no-startup-id swaymsg 'workspace $workspace1; exec $(which firefox-developer-edition)'
     exec --no-startup-id swaymsg 'workspace 2: ; exec termite -e ~/.config/sway/tmux.sh'
     #exec --no-startup-id swaymsg 'workspace $workspace3; exec $(which code)
     exec --no-startup-id swaymsg 'workspace 10: ; exec termite -e $(which ncmpcpp)'
@@ -190,7 +190,7 @@ include /etc/sway/config.d/*
 # Pulse Audio controls
 bindsym F6 exec --no-startup-id amixer set Master 5%+ -q
 bindsym F5 exec --no-startup-id amixer set Master 5%- -q
-bindsym F4 exec --no-startup-id amixer set Master toggle
+bindsym F4 exec --no-startup-id amixer set Master toggle && amixer set Speaker unmute
 
 # Sreen brightness controls
 bindsym F3 exec brightnessctl s +250 # increase screen brightness
