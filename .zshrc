@@ -9,9 +9,10 @@ fi
 # Source autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh    
 
-# Set global node_modules to user
-PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
+# Quercus Technologies SmartLPR Access 4.3  -------------
+export PATH=/home/jan/SmartLPR/4.3/Bin:/Quercus/bin:$PATH
+export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
+# ---------------------------------------------------------
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -23,11 +24,10 @@ SAVEHIST=3000
 # End of lines added by compinstall
 
 # Load custom functions
-source .zshfuncs
+source ~/.zshfuncs
 
 # Load custom alias
-source .zshalias
+source ~/.zshalias
 
-# Quercus bins
-PATH="/Quercus/bin:$PATH"
+
 
