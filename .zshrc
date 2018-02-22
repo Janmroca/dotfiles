@@ -21,6 +21,7 @@ SAVEHIST=3000
 setopt autocd
 bindkey -e
 # End of lines configured by zsh-newuser-install
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/jan/.zshrc'
 
@@ -32,5 +33,8 @@ compinit
 # System info script
 neofetch
 
-# Dotfiles git configuration
-alias config='/usr/bin/git --git-dir=/home/jan/.cfg/ --work-tree=/home/jan'
+# Load custom functions
+source ~/.zsh/zshfuncs
+
+# Load custom alias
+source ~/.zsh/zshalias
