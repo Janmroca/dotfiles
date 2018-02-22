@@ -1,3 +1,4 @@
+" Unbind arrow keys
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
 nnoremap <left>  <nop>
