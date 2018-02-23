@@ -1,3 +1,7 @@
+" ----------------------------------------------------------------------------
+" KEY MAPS
+" ----------------------------------------------------------------------------
+
 "Unbind arrow keys
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
@@ -8,16 +12,12 @@ inoremap <down>  <nop>
 inoremap <left>  <nop>
 inoremap <right> <nop>
 
-"Search configuration
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
+" Cancel search higlight
 nmap \q :nohlsearch<CR>
 
 "Fix linewise behaviour
-nmap j gj
-nmap k gk
+nnoremap j gj
+nnoremap k gk
 
 "Return to last window 
 nmap <C-e> :e#<CR>
@@ -25,4 +25,35 @@ nmap <C-e> :e#<CR>
 "Utilities
 nmap \l :setlocal number!<CR>
 nmap \o :set paste!<CR>
+
+" ----------------------------------------------------------------------------
+" OPTIONS
+" ----------------------------------------------------------------------------
+
+"Set search options
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+"Set term colors
+set termguicolors
+
+" ----------------------------------------------------------------------------
+" PLUGIN SETTINGS
+" ----------------------------------------------------------------------------
+
+" Specify a directory for plugins
+call plug#begin('~/.nvim/plugged')
+
+" Color theme
+Plug 'morhetz/gruvbox'
+
+" Initialize plugin system
+call plug#end()
+
+"Set colorscheme
+let g:gruvbox_contrast_dark = 'hard' "Hard contrast
+colorscheme gruvbox
+set background=dark "Dark theme
 
