@@ -2,6 +2,9 @@
 " KEY MAPS
 " ----------------------------------------------------------------------------
 
+" Set leader key
+let mapleader="\<SPACE>"
+
 "Unbind arrow keys
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
@@ -12,8 +15,8 @@ inoremap <down>  <nop>
 inoremap <left>  <nop>
 inoremap <right> <nop>
 
-" Cancel search higlight
-nmap \q :nohlsearch<CR>
+"Toggle search higlight
+nmap <leader>q :set hlsearch!<CR>
 
 "Fix linewise behaviour
 nnoremap j gj
@@ -22,13 +25,19 @@ nnoremap k gk
 "Return to last window 
 nmap <C-e> :e#<CR>
 
-"Utilities
-nmap \l :setlocal number!<CR>
-nmap \o :set paste!<CR>
+"Toggle display number
+nmap <leader>l :setlocal number!<CR>
 
 " ----------------------------------------------------------------------------
 " OPTIONS
 " ----------------------------------------------------------------------------
+
+"Set basic options
+set showmatch
+set number
+set expandtab
+set tabstop=4
+set shiftwidth=4
 
 "Set search options
 set incsearch
@@ -48,6 +57,10 @@ call plug#begin('~/.nvim/plugged')
 
 " Color theme
 Plug 'morhetz/gruvbox'
+
+" Fuzzy finder
+Plug 'junegunn/fzf.vim'
+Plug '~/.fzf'
 
 " Initialize plugin system
 call plug#end()
