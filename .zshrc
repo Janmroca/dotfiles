@@ -7,7 +7,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Source autojump
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh 
+[[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
 
 # Set global node_modules to user
 PATH="$HOME/.node_modules/bin:$PATH"
