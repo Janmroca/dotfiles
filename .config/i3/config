@@ -105,6 +105,7 @@ font pango:System San Francisco Display 11
 
     # Autolaunch
     exec --no-startup-id i3-msg 'workspace $workspace1; exec $(which firefox)'
+    exec mopidy &
     exec --no-startup-id i3-msg 'exec ~/.config/i3/tmux.sh $workspace2 "$term"'
     exec --no-startup-id i3-msg 'exec ~/.config/i3/ncmpcpp.sh $workspace0 $term'
 
@@ -137,7 +138,7 @@ font pango:System San Francisco Display 11
 # Scratchpad:
 #
     # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+    # You can send windews there and get them back later.
 
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
@@ -171,7 +172,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # redshift
-# exec --no-startup-id redshift -t 5500:3700 -g 1.00 1.00 1.00 -m randr -l 41.149826:1.105532
+#exec --no-startup-id redshift -t 5500:3700 -g 1.00 1.00 1.00 -m randr -l 41.149826:1.105532
 
 # No title
 new_window pixel

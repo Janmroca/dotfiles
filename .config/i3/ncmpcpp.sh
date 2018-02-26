@@ -4,5 +4,5 @@
 
 cmd="ncmpcpp";
 
-sleep 0.5
+sleep 3.5
 i3-msg workspace $1 && $2 -e $cmd

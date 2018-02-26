@@ -41,7 +41,7 @@ nmap <Leader>f :Ack
 nmap <Leader>x :cclose<CR>
 
 "Tmux resend
-nmap <Leader>r :!tmux send-keys -t 0:0.1 C-p C-j <CR><CR>
+nmap <Leader>r :!tmux send-keys -t 0:1.1 C-p C-j <CR><CR>
 
 "ProseMode
 nmap <Leader>p :ProseMode<CR>
