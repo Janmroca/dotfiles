@@ -64,6 +64,8 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " Toggle between normal and relative numbering.
 nnoremap <Leader>ñ :call NumberToggle()<cr>
 
+" Switch between source and header file
+nnoremap <Leader>o :FSHere<CR>
 " ----------------------------------------------------------------------------
 " OPTIONS
 " ----------------------------------------------------------------------------
@@ -262,6 +264,10 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 Plug 'zchee/deoplete-clang' "C-based
+
+" Switch header/implementation files
+Plug 'derekwyatt/vim-fswitch'
+ au! BufEnter *.cpp let b:fswitchdst = 'h' | let b:fswitchlocs = '../Include'
 
 " Initialize plugin system
 call plug#end()
