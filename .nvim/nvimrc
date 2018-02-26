@@ -2,7 +2,7 @@
 " KEY MAPS
 " ----------------------------------------------------------------------------
 
-" Set leader key
+"Set leader key
 let mapleader="\<SPACE>"
 
 "Unbind arrow keys
@@ -16,7 +16,7 @@ inoremap <left>  <nop>
 inoremap <right> <nop>
 
 "Toggle search higlight
-nmap <leader>q :set hlsearch!<CR>
+nmap <Leader>w :set hlsearch!<CR>
 
 "Fix linewise behaviour
 nnoremap j gj
@@ -26,11 +26,50 @@ nnoremap k gk
 nmap <C-e> :e#<CR>
 
 "Toggle display number
-nmap <leader>l :setlocal number!<CR>
+nmap <Leader>l :setlocal number!<CR>
+
+"Fzf Binds
+nmap <C-p> :Buffers<CR>
+nmap <C-t> :Files<CR>
+nmap <Leader>r :Tags<CR>
+
+"Find
+nmap <Leader>k :Ack! "\b<cword>\b" <CR>
+nmap <Leader>f :Ack 
+
+"Close QuickFix window
+nmap <Leader>x :cclose<CR>
+
+"Tmux resend
+nmap <Leader>r :!tmux send-keys -t 0:0.1 C-p C-j <CR><CR>
+
+"ProseMode
+nmap <Leader>p :ProseMode<CR>
+
+"Close buffer
+nmap <Leader>q :BD<CR>
+
+" Travel windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Toggle directory traversal
+nmap <Leader>e :NERDTreeToggle<CR>
+
+" Code completion with tab
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Toggle between normal and relative numbering.
+nnoremap <Leader>ñ :call NumberToggle()<cr>
 
 " ----------------------------------------------------------------------------
 " OPTIONS
 " ----------------------------------------------------------------------------
+
+"Activate syntax
+syntax on
 
 "Set basic options
 set showmatch
@@ -48,6 +87,89 @@ set hlsearch
 "Set term colors
 set termguicolors
 
+" Disable insert status
+set noshowmode
+
+" GitGutter styling to use · instead of +/-
+set updatetime=100
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+
+" ----------------------------------------------------------------------------
+" FUNCTIONS
+" ----------------------------------------------------------------------------
+
+"ProseMode functions
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+  set bg=light
+endfunction
+
+"Relative numbering
+" Relative numbering
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set rnu
+  endif
+endfunc
+
+"LightLine functions
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ▲', all_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+" ----------------------------------------------------------------------------
+" COMMANDS
+" ----------------------------------------------------------------------------
+
+" ProseMode Command
+command! ProseMode call ProseMode()
+
+" ALELint update statusbar
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Tell Vim which characters to show for expanded TABs,
+" trailing whitespace, and end-of-lines. VERY useful!
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+set list                " Show problematic characters.
+
+" Also highlight all tabs and trailing whitespace characters.
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$\|\t/
+
 " ----------------------------------------------------------------------------
 " PLUGIN SETTINGS
 " ----------------------------------------------------------------------------
@@ -62,11 +184,92 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf.vim'
 Plug '~/.fzf'
 
+" Pairs keybindings 
+Plug 'tpope/vim-unimpaired'
+
+" Global searcher 
+Plug 'mileszs/ack.vim'
+let g:ackprg = 'rg --vimgrep --no-heading'
+
+" Distraction-free viewer
+Plug 'junegunn/goyo.vim'
+
+" Linter
+Plug 'w0rp/ale'
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
+" Statusline
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+" Git sign column
+Plug 'airblade/vim-gitgutter'
+
+" Git client
+Plug 'tpope/vim-fugitive'
+
+" Close buffers
+Plug 'qpkorr/vim-bufkill'
+
+" File commands
+Plug 'tpope/vim-eunuch'
+
+" Syntax
+Plug 'sheerun/vim-polyglot'
+
+" Comments
+Plug 'tpope/vim-commentary'
+
+" Sorrounding chars
+Plug 'tpope/vim-surround'
+
+" Enable plugin command repeating
+Plug 'tpope/vim-repeat'
+
+" Fix indentation
+Plug 'tpope/vim-sleuth'
+
+" Directory traversal
+Plug 'scrooloose/nerdtree'
+
+" Code completion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'zchee/deoplete-clang' "C-based
+
 " Initialize plugin system
 call plug#end()
 
 "Set colorscheme
-let g:gruvbox_contrast_dark = 'hard' "Hard contrast
+let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
+let g:gruvbox_contrast_light= 'hard' "Hard contrast light the:set 
 colorscheme gruvbox
-set background=dark "Dark theme
+set bg=dark "Dark theme
+
 
