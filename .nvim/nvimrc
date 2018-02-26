@@ -86,6 +86,9 @@ set ignorecase
 set smartcase
 set hlsearch
 
+"Allows switching buffers while unsaved
+set hidden
+
 "Set term colors
 set termguicolors
 
