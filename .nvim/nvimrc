@@ -267,7 +267,14 @@ Plug 'zchee/deoplete-clang' "C-based
 
 " Switch header/implementation files
 Plug 'derekwyatt/vim-fswitch'
- au! BufEnter *.cpp let b:fswitchdst = 'h' | let b:fswitchlocs = '../Include'
+ au! BufEnter *.cpp let b:fswitchdst = 'h, cpp' | let b:fswitchlocs = '../Include,../Src'
+ augroup mycppfiles
+   au!
+   au BufEnter *.h let b:fswitchdst  = 'cpp'
+   au BufEnter *.h let b:fswitchlocs = '../Src'
+   au BufEnter *.cpp let b:fswitchdst  = 'h'
+   au BufEnter *.cpp let b:fswitchlocs = '../Include'
+augroup END
 
 " Initialize plugin system
 call plug#end()
