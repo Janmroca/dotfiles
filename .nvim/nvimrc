@@ -47,7 +47,7 @@ nmap <Leader>r :!tmux send-keys -t 0:1.1 C-p C-j <CR><CR>
 nmap <Leader>p :ProseMode<CR>
 
 "Close buffer
-nmap <Leader>q :BD<CR>
+nmap <Leader>q :bd<CR>
 
 " Travel windows
 map <C-j> <C-W>j
@@ -233,9 +233,6 @@ Plug 'airblade/vim-gitgutter'
 
 " Git client
 Plug 'tpope/vim-fugitive'
-
-" Close buffers
-Plug 'qpkorr/vim-bufkill'
 
 " File commands
 Plug 'tpope/vim-eunuch'
