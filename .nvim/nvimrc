@@ -66,6 +66,8 @@ nnoremap <Leader>ñ :call NumberToggle()<cr>
 
 " Switch between source and header file
 nnoremap <Leader>o :FSHere<CR>
+nmap <Leader>md :!mkdir -p %:p:h<CR>
+
 " ----------------------------------------------------------------------------
 " OPTIONS
 " ----------------------------------------------------------------------------
