@@ -268,6 +268,7 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 Plug 'zchee/deoplete-clang' "C-based
+Plug 'zchee/deoplete-jedi' "Python
 
 " Switch header/implementation files
 Plug 'derekwyatt/vim-fswitch'
@@ -288,5 +289,4 @@ let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
 let g:gruvbox_contrast_light= 'hard' "Hard contrast light the:set 
 colorscheme gruvbox
 set bg=dark "Dark theme
-
 
