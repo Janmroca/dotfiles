@@ -36,8 +36,17 @@ nmap <C-t> :Files<CR>
 nmap <Leader>k :Ack! "\b<cword>\b" <CR>
 nmap <Leader>f :Ack 
 
-"Tmux resend
-nmap <Leader>r :!tmux send-keys -t 0:1.1 C-p C-j <CR><CR>
+"Prompt for a command to run
+Arpeggio nmap vp :VimuxPromptCommand<CR>
+
+"Run last command executed by VimuxRunCommand
+map <Leader>r :VimuxRunLastCommand<CR>
+
+"Inspect runner pane
+Arpeggio nmap vi :VimuxInspectRunner<CR>
+
+"Zoom the tmux runner pane
+Arpeggio nmap vz :VimuxZoomRunner<CR>
 
 "ProseMode
 nmap <Leader>p :ProseMode<CR>
@@ -281,6 +290,15 @@ augroup mycppfiles
   au BufEnter *.cpp let b:fswitchdst  = 'h'
   au BufEnter *.cpp let b:fswitchlocs = '../include'
 augroup END
+
+"Vim/Tmux navigation
+Plug 'christoomey/vim-tmux-navigator'
+
+"Vim/Tmux commands
+Plug 'benmills/vimux'
+
+"Vim multikey binds
+Plug 'kana/vim-arpeggio'
 
 "Initialize plugin system
 call plug#end()
