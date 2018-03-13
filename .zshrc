@@ -13,6 +13,9 @@ fi
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
 
+# Add python user bins to $PATH
+PATH="$HOME/.local/bin:$PATH"
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000

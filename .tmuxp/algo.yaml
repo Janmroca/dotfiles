@@ -1,0 +1,9 @@
+session_name: A-FIB
+windows:
+- window_name: dev window
+  layout: tiled
+  shell_command_before:
+    - cd ~/Projects/algoFib/
+  panes:
+    - 
+    - nvim
