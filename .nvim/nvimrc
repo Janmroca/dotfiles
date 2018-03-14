@@ -12,10 +12,10 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf.vim'
 Plug '~/.fzf'
 
-"Pairs keybindings 
+"Pairs keybindings
 Plug 'tpope/vim-unimpaired'
 
-"Global searcher 
+"Global searcher
 Plug 'mileszs/ack.vim'
 let g:ackprg = 'rg --vimgrep --no-heading'
 
@@ -91,7 +91,6 @@ Plug 'zchee/deoplete-jedi' "Python
 
 "Switch header/implementation files
 Plug 'derekwyatt/vim-fswitch'
-au! BufEnter *.cpp let b:fswitchdst = 'h, cpp' | let b:fswitchlocs = '../Include,../Src'
 augroup mycppfiles
   au!
   au BufEnter *.h let b:fswitchdst  = 'cpp'
@@ -136,7 +135,7 @@ nmap <Leader>w :set hlsearch!<CR>
 nnoremap j gj
 nnoremap k gk
 
-"Return to last window 
+"Return to last window
 nmap <C-e> :e#<CR>
 
 "Toggle display number
@@ -148,7 +147,7 @@ nmap <C-t> :Files<CR>
 
 "Find
 nmap <Leader>k :Ack! "\b<cword>\b" <CR>
-nmap <Leader>f :Ack 
+nmap <Leader>f :Ack
 
 "Run last command executed by VimuxRunCommand
 map <Leader>r :VimuxRunLastCommand<CR>
@@ -166,7 +165,7 @@ call arpeggio#map('n', '', 0, 'vp', '::VimuxPromptCommand<CR>')
 nmap <Leader>p :ProseMode<CR>
 
 "Close buffer
-nmap <Leader>q :bd<CR>
+nmap <Leader>z :bd<CR>
 
 "Close preview
 nmap <Leader>c :pc<CR>
@@ -201,7 +200,7 @@ nmap <Leader>md :!mkdir -p %:p:h<CR>
 
 "Set colorscheme
 let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
-let g:gruvbox_contrast_light= 'hard' "Hard contrast light the:set 
+let g:gruvbox_contrast_light= 'hard' "Hard contrast light the:set
 colorscheme gruvbox
 set bg=dark "Dark theme
 
