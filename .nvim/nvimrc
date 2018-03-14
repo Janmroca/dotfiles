@@ -43,7 +43,7 @@ nmap <Leader>r :!tmux send-keys -t 0:1.1 C-p C-j <CR><CR>
 nmap <Leader>p :ProseMode<CR>
 
 "Close buffer
-nmap <Leader>q :bd<CR>
+nmap <Leader>z :bd<CR>
 
 "Close preview
 nmap <Leader>c :pc<CR>
