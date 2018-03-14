@@ -91,13 +91,12 @@ Plug 'zchee/deoplete-jedi' "Python
 
 "Switch header/implementation files
 Plug 'derekwyatt/vim-fswitch'
-au! BufEnter *.cpp let b:fswitchdst = 'h, cpp' | let b:fswitchlocs = '../Include,../Src'
 augroup mycppfiles
   au!
   au BufEnter *.h let b:fswitchdst  = 'cpp'
-  au BufEnter *.h let b:fswitchlocs = '../src'
+  au BufEnter *.h let b:fswitchlocs = '../Src'
   au BufEnter *.cpp let b:fswitchdst  = 'h'
-  au BufEnter *.cpp let b:fswitchlocs = '../include'
+  au BufEnter *.cpp let b:fswitchlocs = '../Include'
 augroup END
 
 "Vim/Tmux navigation
