@@ -1,17 +1,16 @@
 session_name: PAE-FIB
 windows:
 - window_name: dev
-  layout: tiled
+  layout: main-vertical
+  options:
+    main-pane-width: 145
   shell_command_before:
     - cd ~/Projects/pae/espae-fib-18/
   panes:
-    - shell_command: 
+    - shell_command:
       - nvim .
       focus: true
-    -
-    - git lg
     - shell_command:
-      - tmux select-layout  main-vertical
-      - tmux resize-pane -x 140
-      - clear
-      - python
+      - git lg
+      - git st
+    - python

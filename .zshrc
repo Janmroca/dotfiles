@@ -9,12 +9,19 @@ fi
 # Source autojump
 [[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
 
-# Set global node_modules to user
-PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
 
-# Add python user bins to $PATH
-PATH="$HOME/.local/bin:$PATH"
+if [[ -z $TMUX ]]; then
+
+  # Set global node_modules to user
+  PATH="$HOME/.node_modules/bin:$PATH"
+  export npm_config_prefix=~/.node_modules
+
+  # Add python user bins to $PATH
+  PATH="$HOME/.local/bin:$PATH"
+
+  # Add own scripts
+  PATH="$HOME/.scripts:$PATH"
+fi
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
