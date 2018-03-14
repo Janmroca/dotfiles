@@ -5,9 +5,10 @@ windows:
   options:
     main-pane-width: 190
   shell_command_before:
-    - cd ~/Projectes/EnCurs/code/LPR5/Cpp_DESAR0135/Src/
+    - cd ~/Projectes/EnCurs/code/LPR5/Cpp_DESAR0135/
   panes:
     - shell_command:
+      - cd ./SW/PoC
       - nvim .
       focus: true
     - shell_command:
@@ -18,5 +19,5 @@ windows:
       - nvim ./Cpp/Src/RemoteSystem/Include/Unit.h
     - shell_command:
       - clear
-      - cd ./Cpp_DESAR0135/Src/
+      - cd ./Src/
       - nvim ./RemoteSystem/Include/Unit.h
