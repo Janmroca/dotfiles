@@ -156,7 +156,7 @@ map <Leader>r :VimuxRunLastCommand<CR>
 call arpeggio#map('n', '', 0, 'vi', ':VimuxInspectRunner<CR>')
 
 "Zoom the tmux runner pane
-call arpeggio#map('n', '', 0, 'vz', ':VimusZoomRunner<CR>')
+call arpeggio#map('n', '', 0, 'vz', ':VimuxZoomRunner<CR>')
 
 "Prompt for a command to run
 call arpeggio#map('n', '', 0, 'vp', '::VimuxPromptCommand<CR>')
