@@ -1,0 +1,22 @@
+session_name: LPR5
+windows:
+- window_name: dev
+  layout: main-vertical
+  options:
+    main-pane-width: 190
+  shell_command_before:
+    - cd ~/Projectes/EnCurs/code/LPR5/Cpp_DESAR0135/Src/
+  panes:
+    - shell_command:
+      - nvim .
+      focus: true
+    - shell_command:
+      - git lg
+      - git st
+    - shell_command:
+      - cd ~/Projectes/EnCurs/altcode/LPR4/
+      - nvim ./Cpp/Src/RemoteSystem/Include/Unit.h
+    - shell_command:
+      - clear
+      - cd ./Cpp_DESAR0135/Src/
+      - nvim ./RemoteSystem/Include/Unit.h
