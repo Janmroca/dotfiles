@@ -1,4 +1,118 @@
 " ----------------------------------------------------------------------------
+" PLUGIN SETTINGS
+" ----------------------------------------------------------------------------
+
+"Specify a directory for plugins
+call plug#begin('~/.nvim/plugged')
+
+"Color theme
+Plug 'morhetz/gruvbox'
+
+"Fuzzy finder
+Plug 'junegunn/fzf.vim'
+Plug '~/.fzf'
+
+"Pairs keybindings
+Plug 'tpope/vim-unimpaired'
+
+"Global searcher
+Plug 'mileszs/ack.vim'
+let g:ackprg = 'rg --vimgrep --no-heading'
+
+"Distraction-free viewer
+Plug 'junegunn/goyo.vim'
+
+"Linter
+Plug 'w0rp/ale'
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
+"Statusline
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+"Git sign column
+Plug 'airblade/vim-gitgutter'
+
+"Git client
+Plug 'tpope/vim-fugitive'
+
+"File commands
+Plug 'tpope/vim-eunuch'
+
+"Syntax
+Plug 'sheerun/vim-polyglot'
+
+"Comments
+Plug 'tpope/vim-commentary'
+
+"Sorrounding chars
+Plug 'tpope/vim-surround'
+
+"Enable plugin command repeating
+Plug 'tpope/vim-repeat'
+
+"Fix indentation
+Plug 'tpope/vim-sleuth'
+
+"Directory traversal
+Plug 'scrooloose/nerdtree'
+
+"Code completion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'zchee/deoplete-clang' "C-based
+Plug 'zchee/deoplete-jedi' "Python
+
+"Switch header/implementation files
+Plug 'derekwyatt/vim-fswitch'
+au! BufEnter *.cpp let b:fswitchdst = 'h, cpp' | let b:fswitchlocs = '../Include,../Src'
+augroup mycppfiles
+  au!
+  au BufEnter *.h let b:fswitchdst  = 'cpp'
+  au BufEnter *.h let b:fswitchlocs = '../src'
+  au BufEnter *.cpp let b:fswitchdst  = 'h'
+  au BufEnter *.cpp let b:fswitchlocs = '../include'
+augroup END
+
+"Vim/Tmux navigation
+Plug 'christoomey/vim-tmux-navigator'
+
+"Vim/Tmux commands
+Plug 'benmills/vimux'
+
+"Vim multikey binds
+Plug 'kana/vim-arpeggio'
+
+"Initialize plugin system
+call plug#end()
+
+" ----------------------------------------------------------------------------
 " KEY MAPS
 " ----------------------------------------------------------------------------
 
@@ -22,7 +136,7 @@ nmap <Leader>w :set hlsearch!<CR>
 nnoremap j gj
 nnoremap k gk
 
-"Return to last window 
+"Return to last window
 nmap <C-e> :e#<CR>
 
 "Toggle display number
@@ -34,10 +148,19 @@ nmap <C-t> :Files<CR>
 
 "Find
 nmap <Leader>k :Ack! "\b<cword>\b" <CR>
-nmap <Leader>f :Ack 
+nmap <Leader>f :Ack
 
-"Tmux resend
-nmap <Leader>r :!tmux send-keys -t 0:1.1 C-p C-j <CR><CR>
+"Run last command executed by VimuxRunCommand
+map <Leader>r :VimuxRunLastCommand<CR>
+
+"Inspect runner pane
+call arpeggio#map('n', '', 0, 'vi', ':VimuxInspectRunner<CR>')
+
+"Zoom the tmux runner pane
+call arpeggio#map('n', '', 0, 'vz', ':VimuxZoomRunner<CR>')
+
+"Prompt for a command to run
+call arpeggio#map('n', '', 0, 'vp', '::VimuxPromptCommand<CR>')
 
 "ProseMode
 nmap <Leader>p :ProseMode<CR>
@@ -51,28 +174,36 @@ nmap <Leader>c :pc<CR>
 "Close QuickFix window
 nmap <Leader>x :cclose<CR>
 
-" Travel windows
+"Travel windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Toggle directory traversal
+"Toggle directory traversal
 nmap <Leader>e :NERDTreeToggle<CR>
 
-" Code completion with tab
+"Code completion with tab
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" Toggle between normal and relative numbering.
+"Toggle between normal and relative numbering.
 nnoremap <Leader>ñ :call NumberToggle()<cr>
 
-" Switch between source and header file
+"Switch between source and header file
 nnoremap <Leader>o :FSHere<CR>
+
+"Create directories
 nmap <Leader>md :!mkdir -p %:p:h<CR>
 
 " ----------------------------------------------------------------------------
 " OPTIONS
 " ----------------------------------------------------------------------------
+
+"Set colorscheme
+let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
+let g:gruvbox_contrast_light= 'hard' "Hard contrast light theme
+colorscheme gruvbox
+set bg=dark "Dark theme
 
 "Activate syntax
 syntax on
@@ -96,10 +227,10 @@ set hidden
 "Set term colors
 set termguicolors
 
-" Disable insert status
+"Disable insert status
 set noshowmode
 
-" GitGutter styling to use · instead of +/-
+"GitGutter styling to use · instead of +/-
 set updatetime=100
 let g:gitgutter_sign_added = '∙'
 let g:gitgutter_sign_modified = '∙'
@@ -119,7 +250,6 @@ function! ProseMode()
 endfunction
 
 "Relative numbering
-" Relative numbering
 function! NumberToggle()
   if(&relativenumber == 1)
     set nornu
@@ -151,7 +281,7 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓ ' : ''
 endfunction
 
-" Update and show lightline but only if it's visible (e.g., not in Goyo)
+"Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
   if exists('#lightline')
     call lightline#update()
@@ -162,131 +292,20 @@ endfunction
 " COMMANDS
 " ----------------------------------------------------------------------------
 
-" ProseMode Command
+"ProseMode Command
 command! ProseMode call ProseMode()
 
-" ALELint update statusbar
+"ALELint update statusbar
 autocmd User ALELint call s:MaybeUpdateLightline()
 
-" Tell Vim which characters to show for expanded TABs,
-" trailing whitespace, and end-of-lines. VERY useful!
+"Tell Vim which characters to show for expanded TABs,
+"trailing whitespace, and end-of-lines. VERY useful!
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
-set list                " Show problematic characters.
+set list                "Show problematic characters.
 
-" Also highlight all tabs and trailing whitespace characters.
+"Also highlight all tabs and trailing whitespace characters.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
-
-" ----------------------------------------------------------------------------
-" PLUGIN SETTINGS
-" ----------------------------------------------------------------------------
-
-" Specify a directory for plugins
-call plug#begin('~/.nvim/plugged')
-
-" Color theme
-Plug 'morhetz/gruvbox'
-
-" Fuzzy finder
-Plug 'junegunn/fzf.vim'
-Plug '~/.fzf'
-
-" Pairs keybindings 
-Plug 'tpope/vim-unimpaired'
-
-" Global searcher 
-Plug 'mileszs/ack.vim'
-let g:ackprg = 'rg --vimgrep --no-heading'
-
-" Distraction-free viewer
-Plug 'junegunn/goyo.vim'
-
-" Linter
-Plug 'w0rp/ale'
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-
-" Statusline
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-\ 'colorscheme': 'wombat',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
-
-" Git sign column
-Plug 'airblade/vim-gitgutter'
-
-" Git client
-Plug 'tpope/vim-fugitive'
-
-" File commands
-Plug 'tpope/vim-eunuch'
-
-" Syntax
-Plug 'sheerun/vim-polyglot'
-
-" Comments
-Plug 'tpope/vim-commentary'
-
-" Sorrounding chars
-Plug 'tpope/vim-surround'
-
-" Enable plugin command repeating
-Plug 'tpope/vim-repeat'
-
-" Fix indentation
-Plug 'tpope/vim-sleuth'
-
-" Directory traversal
-Plug 'scrooloose/nerdtree'
-
-" Code completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-
-Plug 'zchee/deoplete-clang' "C-based
-Plug 'zchee/deoplete-jedi' "Python
-
-" Switch header/implementation files
-Plug 'derekwyatt/vim-fswitch'
- au! BufEnter *.cpp let b:fswitchdst = 'h, cpp' | let b:fswitchlocs = '../Include,../Src'
- augroup mycppfiles
-   au!
-   au BufEnter *.h let b:fswitchdst  = 'cpp'
-   au BufEnter *.h let b:fswitchlocs = '../Src'
-   au BufEnter *.cpp let b:fswitchdst  = 'h'
-   au BufEnter *.cpp let b:fswitchlocs = '../Include'
-augroup END
-
-" Initialize plugin system
-call plug#end()
-
-"Set colorscheme
-let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
-let g:gruvbox_contrast_light= 'hard' "Hard contrast light the:set 
-colorscheme gruvbox
-set bg=dark "Dark theme
 

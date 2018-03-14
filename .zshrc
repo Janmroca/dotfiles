@@ -17,6 +17,9 @@ export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
 # Custom scripts
 export PATH=/home/jan/stuff/scripts:$PATH
 
+# Python user bins
+export PATH=/home/jan/.local/bin:$PATH
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
