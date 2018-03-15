@@ -1,0 +1,8 @@
+#!/bin/bash
+
+dev="wlp1s0"
+
+sudo systemctl stop connman
+sudo wpa_supplicant -i $dev -c ~/.cat_installer/cat_installer.conf&
+sudo dhclient -d $dev
+sudo systemctl start connman
