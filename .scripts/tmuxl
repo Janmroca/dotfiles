@@ -2,4 +2,4 @@
 
 proj=`(cd ~/.tmuxp/ && fzf) | sed "s/.yaml$//"`
 
-tmuxp load $proj
+[ -n "$proj" ] && (tmuxp load $proj)

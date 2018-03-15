@@ -34,7 +34,7 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = {
 \ 'colorscheme': 'wombat',
 \ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
 \ },
 \ 'component_expand': {
@@ -46,6 +46,9 @@ let g:lightline = {
 \   'readonly': 'error',
 \   'linter_warnings': 'warning',
 \   'linter_errors': 'error'
+\ },
+\ 'component_function': {
+\   'gitbranch': 'fugitive#head'
 \ },
 \ }
 
@@ -194,6 +197,9 @@ nnoremap <Leader>o :FSHere<CR>
 "Create directories
 nmap <Leader>md :!mkdir -p %:p:h<CR>
 
+"Git fugitive up traversal
+nnoremap <Leader>gu :edit %:h<CR>
+
 " ----------------------------------------------------------------------------
 " OPTIONS
 " ----------------------------------------------------------------------------
@@ -308,3 +314,5 @@ set list                "Show problematic characters.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
 
+"Auto-clean fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
