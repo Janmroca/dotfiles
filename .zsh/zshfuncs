@@ -1,7 +1,6 @@
 # Go to git root
-
 gitroot () {
-	TOP_DIR=`git rev-parse --show-toplevel`
+	TOP_DIR=`git rev-parse --show-toplevel 2> /dev/null`
 
 	if [ -z "$TOP_DIR" ]; then
 	  echo "This does not appear to be a git repo."

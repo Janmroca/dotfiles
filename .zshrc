@@ -7,33 +7,30 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Source autojump
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh    
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
-# Quercus Technologies SmartLPR Access 4.3  -------------
-export PATH=/home/jan/SmartLPR/4.3/Bin:/Quercus/bin:$PATH
-export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
-# ---------------------------------------------------------
+if [[ -z $TMUX ]]; then
 
-# Custom scripts
-export PATH=/home/jan/stuff/scripts:$PATH
+  # Quercus Technologies SmartLPR Access 4.3
+  export PATH=/home/jan/SmartLPR/4.3/Bin:/Quercus/bin:$PATH
+  export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
 
-# Python user bins
-export PATH=/home/jan/.local/bin:$PATH
+  # Set global node_modules to user
+  PATH="$HOME/.node_modules/bin:$PATH"
+  export npm_config_prefix=~/.node_modules
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=3000
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+  # Add python user bins to $PATH
+  PATH="$HOME/.local/bin:$PATH"
 
-# End of lines added by compinstall
+  # Add own scripts
+  PATH="$HOME/.scripts:$PATH"
 
+  # Custom scripts
+  export PATH=/home/jan/stuff/scripts:$PATH
+
+fi
 # Load custom functions
-source ~/.zshfuncs
+source ~/.zsh/zshfuncs
 
 # Load custom alias
-source ~/.zshalias
-
-
-
+source ~/.zsh/zshalias

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+proj=`(cd ~/.tmuxp/ && fzf) | sed "s/.yaml$//"`
+
+[ -n "$proj" ] && (tmuxp load $proj)

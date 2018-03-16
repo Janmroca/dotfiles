@@ -9,7 +9,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term st -f "PragmataPro:size=10" 
+set $term st -f "PragmataPro:size=10"
 # Your preferred application launcher
 
 ### Output configuration
@@ -182,13 +182,6 @@ new_window pixel
  bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 1 -5%
  bindsym XF86AudioMute exec --no-startup-id pactl list sinks | grep Mute | tail -n1 | grep -q Mute:.yes && pactl set-sink-mute 1 0 || pactl set-sink-mute 1 1
 
-# # Sreen brightness controls
-# bindsym F3 exec brightnessctl s +250 # increase screen brightness
-# bindsym F2 exec brightnessctl s 250- # decrease screen brightness
-
-# # Mail controls
-# bindsym F10 exec firefox-developer www.gmail.com
-
 # # Media player controls
  bindsym XF86AudioPlay exec exec ~/.config/i3blocks/mpc-playpause.sh
  bindsym XF86AudioPrev exec mpc prev
@@ -199,4 +192,3 @@ bar {
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     position top
 }
-
