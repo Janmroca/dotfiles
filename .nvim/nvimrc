@@ -145,8 +145,8 @@ nmap <C-e> :e#<CR>
 nmap <Leader>l :setlocal number!<CR>
 
 "Fzf Binds
-nmap <C-p> :Buffers<CR>
-nmap <C-t> :Files<CR>
+nmap <C-p> :call FZFOpen(':Buffers')<CR>
+nmap <C-t> :call FZFOpen(':Files')<CR>
 
 "Find
 nmap <Leader>k :Ack! "\b<cword>\b" <CR>
@@ -245,6 +245,15 @@ let g:gitgutter_sign_modified_removed = '∙'
 " ----------------------------------------------------------------------------
 " FUNCTIONS
 " ----------------------------------------------------------------------------
+
+" Avoid fzf opening files on nerdtree
+function! FZFOpen(command_str)
+  if (expand('%') =~# 'NERD_tree' && winnr('$') > 1)
+    exe "normal! \<c-w>\<c-w>"
+  endif
+  exe 'normal! ' . a:command_str . "\<cr>"
+endfunction
+
 
 "ProseMode functions
 function! ProseMode()
