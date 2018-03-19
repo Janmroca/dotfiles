@@ -182,6 +182,9 @@ bindsym $mod+r mode "resize"
 # redshift
 exec --no-startup-id redshift -t 5500:3700 -g 1.00 1.00 1.00 -m randr -l 41.149826:1.105532
 
+# Dropbox
+exec --no-startup-id dropbox
+
 # No title
 default_border pixel
 
