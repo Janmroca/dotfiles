@@ -115,6 +115,9 @@ Plug 'benmills/vimux'
 "Vim multikey binds
 Plug 'kana/vim-arpeggio'
 
+"Handle several buffers
+Plug 'vim-scripts/BufOnly.vim'
+
 "Initialize plugin system
 call plug#end()
 
@@ -173,6 +176,9 @@ nmap <Leader>p :ProseMode<CR>
 
 "Close buffer
 nmap <Leader>z :bd<CR>
+
+"Close all buffers except current
+nmap <Leader>a :BufOnly<CR>
 
 "Close preview
 nmap <Leader>c :pc<CR>
