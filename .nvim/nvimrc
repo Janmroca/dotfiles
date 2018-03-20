@@ -8,6 +8,10 @@ call plug#begin('~/.nvim/plugged')
 "Color theme
 Plug 'morhetz/gruvbox'
 
+"Notes
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
 "Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug '~/.fzf'
@@ -206,7 +210,7 @@ nnoremap <Leader>gu :edit %:h<CR>
 
 "Set colorscheme
 let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
-let g:gruvbox_contrast_light= 'hard' "Hard contrast light theme
+let g:gruvbox_contrast_light= 'medium' "Medium contrast light theme
 colorscheme gruvbox
 set bg=dark "Dark theme
 
