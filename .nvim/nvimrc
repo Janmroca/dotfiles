@@ -216,7 +216,6 @@ nnoremap <Leader>gu :edit %:h<CR>
 
 "Set colorscheme
 let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
-let g:gruvbox_contrast_light= 'hard' "Hard contrast light the:set
 colorscheme gruvbox
 set bg=dark "Dark theme
 
@@ -268,9 +267,8 @@ endfunction
 "ProseMode functions
 function! ProseMode()
   call goyo#execute(0, [])
-  set spell noci nosi noai nolist noshowmode noshowcmd
+  set nospell noci nosi noai nolist noshowmode noshowcmd
   set complete+=s
-  set bg=light
 endfunction
 
 "Relative numbering
