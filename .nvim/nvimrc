@@ -115,6 +115,9 @@ Plug 'benmills/vimux'
 "Vim multikey binds
 Plug 'kana/vim-arpeggio'
 
+"buffer handler
+Plug 'vim-scripts/BufOnly.vim'
+
 "Initialize plugin system
 call plug#end()
 
@@ -174,6 +177,9 @@ nmap <Leader>p :ProseMode<CR>
 "Close buffer
 nmap <Leader>z :bd<CR>
 
+"Close all buffers except current
+nmap <Leader>a :BufOnly<CR>
+
 "Close preview
 nmap <Leader>c :pc<CR>
 
@@ -210,7 +216,6 @@ nnoremap <Leader>gu :edit %:h<CR>
 
 "Set colorscheme
 let g:gruvbox_contrast_dark = 'hard' "Hard contrast dark theme
-let g:gruvbox_contrast_light= 'medium' "Medium contrast light theme
 colorscheme gruvbox
 set bg=dark "Dark theme
 
@@ -263,7 +268,6 @@ function! ProseMode()
   call goyo#execute(0, [])
   set spell noci nosi noai nolist noshowmode noshowcmd
   set complete+=s
-  set bg=light
 endfunction
 
 "Relative numbering
