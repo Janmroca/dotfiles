@@ -1,3 +1,12 @@
+# Path appending function (removes duplicates)
+path_append() {
+  for arg in "$@"; do
+      if [[ ":${PATH}:" != *":${arg}:"* ]]; then
+          export PATH="${PATH:+"$PATH:"}${arg}"
+      fi
+  done
+}
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -9,26 +18,26 @@ fi
 # Source autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
-if [[ -z $TMUX ]]; then
+# Quercus Technologies SmartLPR Access 4.3
+path_append "/home/jan/SmartLPR/4.3/Bin" "/Quercus/bin"
+export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
 
-  # Quercus Technologies SmartLPR Access 4.3
-  export PATH=/home/jan/SmartLPR/4.3/Bin:/Quercus/bin:$PATH
-  export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
+# Set global node_modules to user
+path_append "$HOME/.node_modules/bin"
+export npm_config_prefix=~/.node_modules
 
-  # Set global node_modules to user
-  PATH="$HOME/.node_modules/bin:$PATH"
-  export npm_config_prefix=~/.node_modules
+# Add python user bins to $PATH
+path_append "$HOME/.local/bin"
 
-  # Add python user bins to $PATH
-  PATH="$HOME/.local/bin:$PATH"
+# Add own scripts
+path_append "$HOME/.scripts"
 
-  # Add own scripts
-  PATH="$HOME/.scripts:$PATH"
+# Custom scripts
+path_append "$HOME/stuff/scripts"
 
-  # Custom scripts
-  export PATH=/home/jan/stuff/scripts:$PATH
+# Add custom snippets
+path_append "$HOME/.snippets"
 
-fi
 # Load custom functions
 source ~/.zsh/zshfuncs
 

@@ -92,9 +92,21 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_complete_start_length = 1
 
 Plug 'zchee/deoplete-clang' "C-based
 Plug 'zchee/deoplete-jedi' "Python
+
+"Snippets
+Plug 'shougo/neosnippet.vim'
+let g:neosnippet#snippets_directory = '~/.snippets/'
+imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+
+"Some base snippets
+Plug 'shougo/neosnippet-snippets'
 
 "Switch header/implementation files
 Plug 'derekwyatt/vim-fswitch'
@@ -115,7 +127,7 @@ Plug 'benmills/vimux'
 "Vim multikey binds
 Plug 'kana/vim-arpeggio'
 
-"buffer handler
+"Buffer handler
 Plug 'vim-scripts/BufOnly.vim'
 
 "Initialize plugin system
@@ -196,7 +208,7 @@ map <C-l> <C-W>l
 nmap <Leader>e :NERDTreeToggle<CR>
 
 "Code completion with tab
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 "Toggle between normal and relative numbering.
 nnoremap <Leader>ñ :call NumberToggle()<cr>
@@ -234,6 +246,9 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
+
+"Disable preview windows
+set completeopt-=preview
 
 "Allows switching buffers while unsaved
 set hidden

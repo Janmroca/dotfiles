@@ -1,0 +1,74 @@
+# Snippet for Quercus C++ class creation
+snippet qclass
+abbr Quercus class creation
+    #ifndef ${1:#:GuardName}
+    #define $1
+
+    // Author name: Jan Manrique Roca
+
+    // System include files
+
+    // Project include files
+
+    // Forward class declarations
+
+    // Class definitions
+
+    //------------------------------------
+    // ${2:#:Class name}
+    //------------------------------------
+    class $2
+    {
+    public:
+    // Type definitions and constants
+
+    // Constructors, destructors and operator=
+
+    $2(${3:#:Constructor args})
+    {
+        ${0}
+    }
+
+    $2(const $2& other)
+    {
+    }
+
+    $2($2&& other)
+        : $2()
+    {
+        swap(*this, other);
+    }
+
+    $2& operator=($2 other)
+    {
+        swap(*this, other);
+
+        return *this;
+    }
+
+    ~$2()
+    {
+    }
+
+    // Operators and type conversions
+
+    // Data accessors
+
+    // Public methods
+
+    protected:
+    // Type definitions and constants
+
+    // Protected methods
+
+    // Data members
+
+    private:
+
+    // Type defintions and constants
+
+    // Private methods
+
+    // Data members
+    };
+    #endif
