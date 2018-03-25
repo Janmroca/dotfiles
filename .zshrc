@@ -1,3 +1,12 @@
+# Path appending function (removes duplicates)
+path_append() {
+  for arg in "$@"; do
+      if [[ ":${PATH}:" != *":${arg}:"* ]]; then
+          export PATH="${PATH:+"$PATH:"}${arg}"
+      fi
+  done
+}
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -10,18 +19,15 @@ fi
 [[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
 
 
-if [[ -z $TMUX ]]; then
+# Set global node_modules to user
+path_append "$HOME/.node_modules/bin"
+export npm_config_prefix=~/.node_modules
 
-  # Set global node_modules to user
-  PATH="$HOME/.node_modules/bin:$PATH"
-  export npm_config_prefix=~/.node_modules
+# Add python user bins to $PATH
+path_append "$HOME/.local/bin"
 
-  # Add python user bins to $PATH
-  PATH="$HOME/.local/bin:$PATH"
-
-  # Add own scripts
-  PATH="$HOME/.scripts:$PATH"
-fi
+# Add own scripts
+path_append "$HOME/.scripts"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
