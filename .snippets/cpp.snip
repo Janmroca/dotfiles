@@ -1,11 +1,15 @@
 # Snippet for Quercus C++ class creation
 snippet qclass
 abbr Quercus class creation
-    #ifndef ${1:#:GuardName}
-    #define $1
+    #ifndef __${2}_H
+    #define __$2_H
 
-    // Author name: Jan Manrique Roca
-
+    /*! \file
+        \brief $1.h
+        Copyright (C) Quercus Technologies
+        \author Jan Manrique Roca
+        \date   `strftime("%d/%m/%Y")`
+    */
     // System include files
 
     // Project include files
@@ -15,38 +19,38 @@ abbr Quercus class creation
     // Class definitions
 
     //------------------------------------
-    // ${2:#:Class name}
+    // ${1}
     //------------------------------------
-    class $2
+    class $1
     {
     public:
     // Type definitions and constants
 
     // Constructors, destructors and operator=
 
-    $2(${3:#:Constructor args})
+    $1()
     {
         ${0}
     }
 
-    $2(const $2& other)
+    $1(const $1& other)
     {
     }
 
-    $2($2&& other)
-        : $2()
+    $1($1&& other)
+        : $1()
     {
         swap(*this, other);
     }
 
-    $2& operator=($2 other)
+    $1& operator=($1 other)
     {
         swap(*this, other);
 
         return *this;
     }
 
-    ~$2()
+    ~$1()
     {
     }
 
