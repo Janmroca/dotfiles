@@ -184,7 +184,10 @@ call arpeggio#map('n', '', 0, 'vp', '::VimuxPromptCommand<CR>')
 nmap <Leader>p :ProseMode<CR>
 
 "Close buffer
-nmap <Leader>z :bd<CR>
+nmap <C-w> :bd<CR>
+
+"Save buffer
+nmap <C-s> :w<CR>
 
 "Close all buffers except current
 nmap <Leader>a :BufOnly<CR>
