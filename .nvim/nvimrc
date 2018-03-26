@@ -101,9 +101,6 @@ Plug 'zchee/deoplete-jedi' "Python
 "Snippets
 Plug 'shougo/neosnippet.vim'
 let g:neosnippet#snippets_directory = '~/.snippets/'
-imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
 "Some base snippets
 Plug 'shougo/neosnippet-snippets'
@@ -207,8 +204,10 @@ map <C-l> <C-W>l
 "Toggle directory traversal
 nmap <Leader>e :NERDTreeToggle<CR>
 
-"Code completion with tab
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"Code completion and snippets with tab
+imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
 "Toggle between normal and relative numbering.
 nnoremap <Leader>ñ :call NumberToggle()<cr>

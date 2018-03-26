@@ -35,9 +35,6 @@ path_append "$HOME/.scripts"
 # Custom scripts
 path_append "$HOME/stuff/scripts"
 
-# Add custom snippets
-path_append "$HOME/.snippets"
-
 # Load custom functions
 source ~/.zsh/zshfuncs
 
