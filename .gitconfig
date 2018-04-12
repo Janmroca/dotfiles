@@ -16,5 +16,6 @@
 [core]
 	askpass = git-gui--askpass
 	excludesfile = ~/.gitignore
+	editor = nvim
 [credential]
 	helper = cache

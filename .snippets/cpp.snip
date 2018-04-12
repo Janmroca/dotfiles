@@ -10,6 +10,7 @@ abbr Quercus class creation
         \author Jan Manrique Roca
         \date   `strftime("%d/%m/%Y")`
     */
+
     // System include files
 
     // Project include files
@@ -24,34 +25,14 @@ abbr Quercus class creation
     class $1
     {
     public:
+
     // Type definitions and constants
+
     // Constructors, destructors and operator=
+    $1();
+    ~$1();
 
-    $1()
-    {
-        ${0}
-    }
-
-    $1(const $1& other)
-    {
-    }
-
-    $1($1&& other)
-        : $1()
-    {
-        swap(*this, other);
-    }
-
-    $1& operator=($1 other)
-    {
-        swap(*this, other);
-
-        return *this;
-    }
-
-    ~$1()
-    {
-    }
+    $1(const $1& other);
 
     // Operators and type conversions
 
@@ -60,6 +41,7 @@ abbr Quercus class creation
     // Public methods
 
     protected:
+
     // Type definitions and constants
 
     // Protected methods
