@@ -191,20 +191,17 @@ default_border pixel
 include /etc/sway/config.d/*
 
 # Pulse Audio controls
-bindsym F6 exec --no-startup-id amixer set Master 5%+ -q
-bindsym F5 exec --no-startup-id amixer set Master 5%- -q
-bindsym F4 exec --no-startup-id amixer set Master toggle && amixer set Speaker unmute
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+ -q
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%- -q
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle && amixer set Speaker unmute
 
 # Sreen brightness controls
-bindsym F3 exec brightnessctl s +250 # increase screen brightness
-bindsym F2 exec brightnessctl s 250- # decrease screen brightness
-
-# Mail controls
-bindsym F10 exec firefox-developer www.gmail.com
+bindsym XF86MonBrightnessUp exec brightnessctl s +250 # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl s 250- # decrease screen brightness
 
 # Media player controls
-bindsym F12 exec exec ~/.config/i3blocks/mpc-playpause.sh
-bindsym F11 exec mpc prev
+bindsym XF86AudioPlay exec exec ~/.config/i3blocks/mpc-playpause.sh
+bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioNext exec mpc next
 
 # Status Bar
