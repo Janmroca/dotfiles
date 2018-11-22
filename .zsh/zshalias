@@ -1,2 +1,11 @@
 # Dotfiles git configuration
 alias config='/usr/bin/git --git-dir=/home/$USER/.cfg/ --work-tree=/home/$USER'
+
+# Replace cat with bat
+alias cat='bat'
+
+# Replace ping with prettyping
+alias ping='prettyping --nolegend'
+
+# Preview files
+alias pv="fzf --preview 'bat --color \"always\" {}'"
