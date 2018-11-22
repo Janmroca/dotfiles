@@ -8,16 +8,48 @@ windows:
     - cd ~/Projectes/EnCurs/code/LPR5/Cpp_DESAR0135/
   panes:
     - shell_command:
-      - cd ./SW/PoC
       - nvim .
       focus: true
     - shell_command:
       - git lg
       - git st
     - shell_command:
-      - cd ~/Projectes/EnCurs/altcode/LPR4/
-      - nvim ./Cpp/Src/RemoteSystem/Include/Unit.h
+      - cling
+- window_name: QuercusLibs
+  layout: even-horizontal
+  shell_command_before:
+    - cd ~/Projectes/EnCurs/code/LPR5/QuercusLibs/
+  panes:
     - shell_command:
-      - clear
-      - cd ./Src/
-      - nvim ./RemoteSystem/Include/Unit.h
+      - nvim .
+    - shell_command:
+      - git lg
+      - git st
+- window_name: LPRLibs
+  layout: even-horizontal
+  shell_command_before:
+    - cd ~/Projectes/EnCurs/code/LPR5/LPRLibs/
+  panes:
+    - shell_command:
+      - nvim .
+    - shell_command:
+      - git lg
+      - git st
+- window_name: LPR4
+  layout: even-horizontal
+  shell_command_before:
+    - cd ~/Projectes/EnCurs/altcode/LPR4/
+  panes:
+    - shell_command:
+      - nvim .
+    - shell_command:
+      - ls -la
+- window_name: PoC
+  layout: even-horizontal
+  shell_command_before:
+    - cd ~/Projectes/EnCurs/code/LPR5-Design/PoC
+  panes:
+    - shell_command:
+      - nvim .
+    - shell_command:
+      - ls -la

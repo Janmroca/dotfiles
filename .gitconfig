@@ -9,7 +9,7 @@
 	ds = diff --staged
 	unstage = reset HEAD --
 [user]
-	email = jan.manrique@est.fib.upc.edu
+	email = jmanrique@quercus.biz
 	name = Jan Manrique
 [push]
 	default = simple
@@ -19,3 +19,8 @@
 	editor = nvim
 [credential]
 	helper = cache
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

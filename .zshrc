@@ -19,7 +19,7 @@ fi
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 # Quercus Technologies SmartLPR Access 4.3
-path_append "/home/jan/SmartLPR/4.3/Bin" "/Quercus/bin"
+path_append "/home/jan/SmartLPR/4.3/Bin" "/Quercus/bin/news" "/Quercus/bin"
 export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
 
 # Set global node_modules to user
@@ -40,3 +40,17 @@ source ~/.zsh/zshfuncs
 
 # Load custom alias
 source ~/.zsh/zshalias
+
+# ZSH - Vi config
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+
+unset user

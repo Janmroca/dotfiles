@@ -19,20 +19,6 @@ Plug '~/.fzf'
 "Pairs keybindings
 Plug 'tpope/vim-unimpaired'
 
-"Global searcher
-Plug 'mileszs/ack.vim'
-let g:ackprg = 'rg --vimgrep --no-heading'
-
-"Distraction-free viewer
-Plug 'junegunn/goyo.vim'
-
-"Linter
-Plug 'w0rp/ale'
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-
 "Statusline
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
@@ -59,12 +45,6 @@ let g:lightline = {
 "Git sign column
 Plug 'airblade/vim-gitgutter'
 
-"Git client
-Plug 'tpope/vim-fugitive'
-
-"File commands
-Plug 'tpope/vim-eunuch'
-
 "Syntax
 Plug 'sheerun/vim-polyglot'
 
@@ -74,58 +54,11 @@ Plug 'tpope/vim-commentary'
 "Sorrounding chars
 Plug 'tpope/vim-surround'
 
-"Enable plugin command repeating
-Plug 'tpope/vim-repeat'
-
-"Fix indentation
-Plug 'tpope/vim-sleuth'
-
 "Directory traversal
 Plug 'scrooloose/nerdtree'
 
-"Code completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 1
-
-Plug 'zchee/deoplete-clang' "C-based
-Plug 'zchee/deoplete-jedi' "Python
-
-"Snippets
-Plug 'shougo/neosnippet.vim'
-let g:neosnippet#snippets_directory = '~/.snippets/'
-
-"Some base snippets
-Plug 'shougo/neosnippet-snippets'
-
-"Switch header/implementation files
-Plug 'derekwyatt/vim-fswitch'
-augroup mycppfiles
-  au!
-  au BufEnter *.h let b:fswitchdst  = 'cpp'
-  au BufEnter *.h let b:fswitchlocs = '../Src'
-  au BufEnter *.cpp let b:fswitchdst  = 'h'
-  au BufEnter *.cpp let b:fswitchlocs = '../Include'
-augroup END
-
 "Vim/Tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
-
-"Vim/Tmux commands
-Plug 'benmills/vimux'
-
-"Vim multikey binds
-Plug 'kana/vim-arpeggio'
-
-"Buffer handler
-Plug 'vim-scripts/BufOnly.vim'
 
 "Initialize plugin system
 call plug#end()
@@ -160,28 +93,9 @@ nmap <C-e> :e#<CR>
 "Toggle display number
 nmap <Leader>l :setlocal number!<CR>
 
-"Fzf Binds
-nmap <C-p> :call FZFOpen(':Buffers')<CR>
-nmap <C-t> :call FZFOpen(':Files')<CR>
-
 "Find
 nmap <Leader>k :Ack! "\b<cword>\b" <CR>
 nmap <Leader>f :Ack
-
-"Run last command executed by VimuxRunCommand
-map <Leader>r :VimuxRunLastCommand<CR>
-
-"Inspect runner pane
-call arpeggio#map('n', '', 0, 'vi', ':VimuxInspectRunner<CR>')
-
-"Zoom the tmux runner pane
-call arpeggio#map('n', '', 0, 'vz', ':VimuxZoomRunner<CR>')
-
-"Prompt for a command to run
-call arpeggio#map('n', '', 0, 'vp', '::VimuxPromptCommand<CR>')
-
-"ProseMode
-nmap <Leader>p :ProseMode<CR>
 
 "Close buffer
 nmap <C-w> :bd<CR>
@@ -206,23 +120,6 @@ map <C-l> <C-W>l
 
 "Toggle directory traversal
 nmap <Leader>e :NERDTreeToggle<CR>
-
-"Code completion and snippets with tab
-imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-
-"Toggle between normal and relative numbering.
-nnoremap <Leader>ñ :call NumberToggle()<cr>
-
-"Switch between source and header file
-nnoremap <Leader>o :FSHere<CR>
-
-"Create directories
-nmap <Leader>md :!mkdir -p %:p:h<CR>
-
-"Git fugitive up traversal
-nnoremap <Leader>gu :edit %:h<CR>
 
 " ----------------------------------------------------------------------------
 " OPTIONS
@@ -280,13 +177,6 @@ function! FZFOpen(command_str)
   exe 'normal! ' . a:command_str . "\<cr>"
 endfunction
 
-"ProseMode functions
-function! ProseMode()
-  call goyo#execute(0, [])
-  set noci nosi noai nolist noshowmode noshowcmd
-  set complete+=s
-endfunction
-
 "Relative numbering
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -296,28 +186,6 @@ function! NumberToggle()
     set rnu
   endif
 endfunc
-
-"LightLine functions
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ▲', all_errors)
-endfunction
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
 
 "Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
@@ -330,22 +198,9 @@ endfunction
 " COMMANDS
 " ----------------------------------------------------------------------------
 
-"ProseMode Command
-command! ProseMode call ProseMode()
-
-"ALELint update statusbar
-autocmd User ALELint call s:MaybeUpdateLightline()
-
 "Tell Vim which characters to show for expanded TABs,
 "trailing whitespace, and end-of-lines. VERY useful!
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 set list                "Show problematic characters.
-
-"Also highlight all tabs and trailing whitespace characters.
-"highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-"match ExtraWhitespace /\s\+$\|\t/
-
-"Auto-clean fugitive buffers
-autocmd BufReadPost fugitive://* set bufhidden=delete
