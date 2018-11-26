@@ -110,8 +110,6 @@ gaps outer 10
     #Autolaunch
     exec --no-startup-id swaymsg 'workspace $workspace1; exec $(which firefox-developer-edition)'
     exec --no-startup-id swaymsg 'workspace 2: ; exec termite -e ~/.config/sway/tmux.sh'
-    #exec --no-startup-id swaymsg 'workspace $workspace3; exec $(which code)
-    exec --no-startup-id swaymsg 'workspace 10: ; exec termite -e $(which ncmpcpp)'
 
 #
 # reload the configuration file
@@ -200,9 +198,9 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +250 # increase screen brightne
 bindsym XF86MonBrightnessDown exec brightnessctl s 250- # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec exec ~/.config/i3blocks/mpc-playpause.sh
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioNext exec mpc next
+#bindsym XF86AudioPlay exec exec ~/.config/i3blocks/mpc-playpause.sh
+#bindsym XF86AudioPrev exec mpc prev
+#bindsym XF86AudioNext exec mpc next
 
 # Status Bar
 bar {

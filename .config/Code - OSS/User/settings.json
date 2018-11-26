@@ -1,6 +1,6 @@
 {
     "editor.fontFamily": "'PragmataPro'",
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "vim.handleKeys": {
         "<C-w>": false
     },
@@ -19,5 +19,18 @@
         "statusBar.noFolderBackground": "#8FBCBB",
         "statusBar.debuggingBackground": "#8FBCBB",
         "statusBar.foreground": "#434C5E"
-    }
+    },
+    "sync.gist": "559178c6ea738ca98a72294647586a15",
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true,
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastUpload": "",
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "workbench.colorTheme": "Monokai Pro"
 }
