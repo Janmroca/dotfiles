@@ -22,3 +22,4 @@
   - bat
   - prettyping
   - vim-plug
+  - ccache
