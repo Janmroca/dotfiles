@@ -15,3 +15,8 @@
   - diff-so-fancy
   - tmux
   - i3-gaps
+  - Neofetch
+  - zsh
+  - prezto
+  - zathura
+  
