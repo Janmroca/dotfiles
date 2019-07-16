@@ -19,4 +19,5 @@
   - zsh
   - prezto
   - zathura
-  
+  - bat
+  - pping
