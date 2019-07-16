@@ -21,3 +21,4 @@
   - zathura
   - bat
   - prettyping
+  - vim-plug
