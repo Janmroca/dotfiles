@@ -20,4 +20,4 @@
   - prezto
   - zathura
   - bat
-  - pping
+  - prettyping
