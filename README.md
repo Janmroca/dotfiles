@@ -18,8 +18,10 @@
   - Neofetch
   - zsh
   - prezto
-  - zathura
   - bat
   - prettyping
   - vim-plug
   - ccache
+  - feh
+  - compton
+  - htop
