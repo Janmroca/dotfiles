@@ -18,10 +18,6 @@ fi
 # Source autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
-# Quercus Technologies SmartLPR Access 4.3
-path_append "/home/jan/SmartLPR/4.3/Bin" "/Quercus/bin/news" "/Quercus/bin"
-export LD_LIBRARY_PATH=/home/jan/SmartLPR/4.3/Bin:$LD_LIBRARY_PATH
-
 # Set global node_modules to user
 path_append "$HOME/.node_modules/bin"
 export npm_config_prefix=~/.node_modules
@@ -29,11 +25,12 @@ export npm_config_prefix=~/.node_modules
 # Add python user bins to $PATH
 path_append "$HOME/.local/bin"
 
-# Add own scripts
-path_append "$HOME/.scripts"
+# Add own script
+path_append "$HOME/scripts"
 
-# Custom scripts
-path_append "$HOME/stuff/scripts"
+# Compile using ccache
+export PATH=/usr/lib/ccache/bin:$PATH
+
 
 # Load custom functions
 source ~/.zsh/zshfuncs
@@ -52,5 +49,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
-
 unset user
+
+
+neofetch
