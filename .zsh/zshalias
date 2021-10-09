@@ -1,8 +1,0 @@
-# Dotfiles git configuration
-alias config='/usr/bin/git --git-dir=/home/$USER/.cfg/ --work-tree=/home/$USER'
-
-# Prettyping alias
-alias pping='prettyping --nolegend'
-
-# Preview files
-alias pv="fzf --preview 'bat --color \"always\" {}'"
