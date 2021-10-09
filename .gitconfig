@@ -1,12 +1,15 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lb = log --first-parent --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+	graph = log --graph --all --decorate --stat --date=iso
 	co = checkout
 	st = status
+	stu = status -uno
 	ds = diff --staged
 	unstage = reset HEAD --
 [user]
-	email = jan.manrique@est.fib.upc.edu
+	email = jan.manriqueroca@cyferd.com
 	name = Jan Manrique
 [push]
 	default = simple
