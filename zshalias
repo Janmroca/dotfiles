@@ -1,0 +1,11 @@
+# ls --> exa
+alias l='exa'
+alias la='exa -a'
+alias ll='exa -lah'
+alias ls='exa --color=auto'
+
+# cat --> bat
+alias cat='bat --style=plain'
+
+# cyferd
+alias cyf='npm run lint && npm run format'
